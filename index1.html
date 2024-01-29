@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello world</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function form_sf(params) {
+            alert(params)
+        }
+
+        $('#form-sf').on('submit', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <form id="form-sf">
+            <div>Vor Schadenfall</div>
+            <div>Zu zahlenden Versicherungsbeitrag eingeben:</div>
+            <div>
+                <input id="inp-fee" type="number" min="0"><label for="inp-fee">€</label>
+                <label for="inp-sfclass">SF-Klasse</label><input id="inp-sfclass" type="number" min="0" max="50">
+            </div>
+            <div>
+                <input id="button-sf" type="submit" value="Buttonclick">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
