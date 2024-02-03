@@ -193,7 +193,6 @@ function add_years_to_costtable(count) {
         if (year < endyear_in_table) continue;
 
         var diff = premium_reclassed - premium_unchanged;
-        differences.push(diff);
         var diff_percent = diff / premium_unchanged;
         $row_with_morebutton.before(
             $('<tr>').addClass('costtable-yearrow').append(
