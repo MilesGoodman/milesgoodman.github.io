@@ -60,6 +60,46 @@ const premium_percentages = {
     m: 1.35,
 }
 const reclassifications = {
+    50: 25,
+    49: 25,
+    48: 25,
+    47: 24,
+    46: 24,
+    45: 23,
+    44: 23,
+    43: 22,
+    42: 22,
+    41: 21,
+    40: 20,
+    39: 20,
+    38: 19,
+    37: 19,
+    36: 18,
+    35: 18,
+    34: 17,
+    33: 17,
+    32: 16,
+    31: 16,
+    30: 15,
+    29: 14,
+    28: 14,
+    27: 13,
+    26: 13,
+    25: 12,
+    24: 12,
+    23: 11,
+    22: 10,
+    21: 10,
+    20: 9,
+    19: 9,
+    18: 8,
+    17: 7,
+    16: 7,
+    15: 6,
+    14: 6,
+    13: 5,
+    12: 4,
+    11: 4,
     10: 3,
     9: 3,
     8: 2,
@@ -99,9 +139,6 @@ function increment_sfclass(sfclass) {
     }
 }
 
-var $costtable = $('.costtable');
-$costtable.data('year', yearnow);
-
 var base_premium, sf_now, sf_reclassed;
 
 function form_sf(formelements) {
@@ -121,8 +158,6 @@ function form_sf(formelements) {
     sf_reclassed = reclassifications[sf_now];
     base_premium = inp_premium / premium_percentages[sf_now];            
     
-    console.log(inp_premium, sf_now, base_premium);
-
     var new_sfclass = display_sfclass(sf_reclassed);
     $('.new-sfclass').removeClass('na').text(new_sfclass);
 
@@ -136,9 +171,8 @@ function form_sf(formelements) {
     $('.postform').show();
 }
 
-var differences = [];
-
 function add_years_to_costtable(count) {
+    var $costtable = $('.costtable');
     var $row_with_morebutton = $('.moreyears-button-row')
     var startyear = yearnow;
     var endyear_in_table = $costtable.data('year');
@@ -178,16 +212,6 @@ function add_years_to_costtable(count) {
 
     $costtable.data('year', endyear_target);
 }
-
-$('#form-sf').on('submit', function(event) {
-    event.preventDefault();
-    form_sf($(this)[0].elements);
-});
-
-$('#button-moreyears').on('click', function(event) {
-    event.preventDefault();
-    add_years_to_costtable(10);
-})
 
 function calc_freeyears(cost) {
     const maximum = 30;
@@ -232,6 +256,20 @@ function update_freeyears() {
     $('.output.free-years-text').text(freeyears_text);
 }
 
-$('#inp2-costcheck').on('input', function(event) {
-    update_freeyears();
+$.when($.ready).then(function() {
+    $('.costtable').data('year', yearnow);
+    
+    $('#form-sf').on('submit', function(event) {
+        event.preventDefault();
+        form_sf($(this)[0].elements);
+    });
+
+    $('#button-moreyears').on('click', function(event) {
+        event.preventDefault();
+        add_years_to_costtable(10);
+    });
+
+    $('#inp2-costcheck').on('input', function(event) {
+        update_freeyears();
+    }); 
 });
