@@ -2,10 +2,71 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <title>Hello world</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
-    Hello world
+    <div class="wrapper center">
+        <form id="form-sf">
+            <div class="pre-sf-caption">Vor Schadenfall:</div>
+            <div class="pre-sf">
+                <span>Du bist in SF-Klasse</span>
+                <input value="6" id="inp-sfclass" type="text" required title="Schadenfall-Klasse: 0–50, 1/2 oder M" pattern="\s*([Mm]|1/2|[0-9]|[1-4][0-9]|50)\s*">
+                <span>und zahlst</span>
+                <input value="445" id="inp-premium" type="number" required step="0.01" min="0">
+                <span>€ Versicherungsbeitrag.</span>
+            </div>
+            <div class="sf-happened">
+                <label for="button-sf">Schadenfall ist eingetreten.&emsp;:(</label>
+                <input id="button-sf" type="submit" value="Was nun?">
+            </div>
+        </form>
+        <div class="description postform">
+            <div>
+                <span>Wenn du den Schaden der Versicherung meldest, wirst du in die SF-Klasse</span>
+                <span class="output na new-sfclass">?</span>
+                <span>zurückgestuft.</span>
+            </div>
+            <div>
+                <span>Dein Versicherungsbeitrag steigt damit um</span>
+                <span class="output na new-premium-increase">? €</span>
+                <span>auf</span>
+                <span class="output na new-premium">? €</span><span>.</span>
+            </div>
+        </div>
+        <div class="costtable-wrapper postform">
+            <div>Deine Versicherungsbeiträge in den folgenden Jahren sind wie folgt (aufsummiert):</div>
+            <table class="output costtable">
+                <tr>
+                    <th></th>
+                    <th colspan="2">Wenn du den Schaden:</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>meldest</th>
+                    <th style="line-height:1"><em>nicht</em><br/>meldest</th>
+                    <th>Differenz</th>
+                </tr>
+                <tr class="moreyears-button-row">
+                    <td><input id="button-moreyears" type="button" value="Mehr"></td>
+                    <td colspan="3"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="costcheck postform">
+            <span>Du müsstest</span>
+            <span class="output na free-years-number">?</span>
+            <span class="output free-years-text">Jahre</span>
+            <span>ohne Schadenfall fahren, damit es sich lohnt, der geschädigten Person</span>
+            <input id="inp2-costcheck" type="number" min="1" value="2000">
+            <span>€ zu zahlen und den Schaden nicht zu melden.</span>
+        </div>
+        <div class="last postform">
+            <span>Aber am besten baust du nie wieder einen Unfall&nbsp;&nbsp;:p</span>
+        </div>
+    </div>
 </body>
 </html>
